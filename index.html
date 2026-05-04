@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flashcards</title>
+<style>
+body {
+  font-family: -apple-system;
+  text-align: center;
+  background: #f5f5f5;
+  padding: 40px;
+}
+.card {
+  width: 300px;
+  height: 200px;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+button {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<h2>Flashcards</h2>
+<div class="card" onclick="flipCard()">
+  <span id="word">abandon</span>
+</div>
+
+<div>
+  <button onclick="prevCard()">⬅️</button>
+  <button onclick="nextCard()">➡️</button>
+</div>
+
+<script>
+const cards = [
+  ["abandon", "버리다"],
+  ["abstract", "추상적인"],
+  ["allocate", "할당하다"],
+  ["anticipate", "예상하다"],
+  ["arbitrary", "임의의"],
+  ["bias", "편견"],
+  ["coherent", "일관된"],
+  ["compile", "편집하다"],
+  ["constrain", "제한하다"],
+  ["derive", "유도하다"],
+  ["eliminate", "제거하다"],
+  ["empirical", "경험적인"],
+  ["enhance", "향상시키다"],
+  ["explicit", "명백한"],
+  ["fluctuate", "변동하다"],
+  ["hypothesis", "가설"],
+  ["implement", "실행하다"],
+  ["inhibit", "억제하다"],
+  ["justify", "정당화하다"],
+  ["maintain", "유지하다"]
+];
+
+let current = 0;
+let flipped = false;
+
+function showCard() {
+  document.getElementById("word").innerText = cards[current][0];
+  flipped = false;
+}
+
+function flipCard() {
+  if (!flipped) {
+    document.getElementById("word").innerText = cards[current][1];
+    flipped = true;
+  } else {
+    document.getElementById("word").innerText = cards[current][0];
+    flipped = false;
+  }
+}
+
+function nextCard() {
+  current = (current + 1) % cards.length;
+  showCard();
+}
+
+function prevCard() {
+  current = (current - 1 + cards.length) % cards.length;
+  showCard();
+}
+</script>
+
+</body>
+</html>
